@@ -2,6 +2,7 @@
 #Name:		Itunes Connector
 #Author:	Shujin Wu		
 #Description: Connect to Itunes to operate or retrive data
+#Pre:		Install Pyobjc
 #---------------------------------------------------------------------------------
 
 from Foundation import *

@@ -2,6 +2,7 @@
 #Name:		Lyric Downloader
 #Author:	Shujin Wu		
 #Description: Search and download lyric for given song 
+#Pre:		Install BeautifulSoup4
 #---------------------------------------------------------------------------------
 
 import urllib
