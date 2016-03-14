@@ -7,22 +7,23 @@
 import urllib
 from bs4 import BeautifulSoup
 
-song=raw_input("Enter the correct name of the song:	").strip(" ").lower()
-
-artist=raw_input("Enter the correct name of the artist:	").strip(" ").lower()
-
-song=song.replace(" ","")
-artist=artist.replace(" ","")
-
-
-url_list=['http://www.azlyrics.com/lyrics/'+artist+'/'+song+'.html']
-is_found = False
-for url in url_list:
-	#url="http://www.azlyrics.com/lyrics/adele/daydreamer.html"
+def azlyrics(song,artist):
+	song=song.replace(" ","")
+	artist=artist.replace(" ","")
+	url='http://www.azlyrics.com/lyrics/'+artist+'/'+song+'.html' 
 	htmlText=urllib.urlopen(url).read()
 	soup = BeautifulSoup(htmlText,"lxml")
 	find_lyrics=soup.find_all("div")
 	div = [x for x in find_lyrics if str(x).find("class=") == -1]
+	if(len(div)>1): 
+		return div[1]
+	else:
+		return -1
 
-	print div[1]
+
+song=raw_input("Enter the correct name of the song:	").strip(" ").lower()
+artist=raw_input("Enter the correct name of the artist:	").strip(" ").lower()
+lyric=azlyrics(song,artist)
+print lyric
+
 	
