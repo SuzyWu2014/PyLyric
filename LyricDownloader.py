@@ -1,20 +1,22 @@
-"""------------------------------------------------------------------------
-# Name:		Lyric Downloader
-# Author:	Shujin Wu
-# Description: Search and download lyric for given song
-# Pre:		Install BeautifulSoup4
-#------------------------------------------------------------------------"""
+""".
+
+Name:		Lyric Downloader
+Author:	Shujin Wu
+Description: Search and download lyric for given song
+Pre:		Install BeautifulSoup4
+"""
 
 import urllib
 from bs4 import BeautifulSoup
 
 
 def azlyrics(song, artist):
+    """Search lyrics from azlyrics."""
     song = song.replace(" ", "")
     artist = artist.replace(" ", "")
     url = 'http://www.azlyrics.com/lyrics/' + artist + '/' + song + '.html'
-    htmlText = urllib.urlopen(url).read()
-    soup = BeautifulSoup(htmlText, "lxml")
+    html_text = urllib.urlopen(url).read()
+    soup = BeautifulSoup(html_text, "lxml")
     find_lyrics = soup.find_all("div")
     div = [x for x in find_lyrics if str(x).find("class=") == -1]
     if(len(div) > 1):

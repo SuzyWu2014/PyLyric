@@ -1,12 +1,14 @@
-"""-------------------------------------------------------------------------
+""".
+
 # Name:		Itunes Connector
 # Author:	Shujin Wu
 # Description: Connect to Itunes to operate or retrive data
 # Pre:		Install Pyobjc
--------------------------------------------------------------------------"""
+-------------------------------------------------------------------------
+"""
 
-from Foundation import *
-from ScriptingBridge import *
+from Foundation import SBApplication
+# from ScriptingBridge import *
 
 iTunes = SBApplication.applicationWithBundleIdentifier_("com.apple.iTunes")
 

@@ -1,16 +1,3 @@
-
-class MusixMatchAPIError(Exception):
-	"""
-	Error raised when the status code returned by the musixMatch API is not 200
-	"""
-
-	def __init__(self, code, message=None):
-		self.mxm_code = code
-		if message is None:
-			message = status_code(code)
-		self.args = ('MusixMatch API Error %d: %s' % (code, message),)
-
-
 def status_code(value):
     """
     Get a value, i.e. error code as a int.
@@ -43,6 +30,7 @@ def status_code(value):
     # wrong code?
     return "Unknown error code: " + str(value)
 
+
 def check_status(response):
     """
     Checks the response in JSON format
@@ -51,13 +39,14 @@ def check_status(response):
        body of the message in JSON
        except if error was raised
     """
-    if not 'message' in response.keys():
+
+    if (not 'message') in response.keys():
         raise MusixMatchAPIError(-1)
     msg = response['message']
-    if not 'header' in msg.keys():
+    if (not 'header') in msg.keys():
         raise MusixMatchAPIError(-1)
     header = msg['header']
-    if not 'status_code' in header.keys():
+    if (not 'status_code') in header.keys():
         raise MusixMatchAPIError(-1)
     code = header['status_code']
     if code != 200:
@@ -65,3 +54,15 @@ def check_status(response):
     # all good, return body
     body = msg['body']
     return body
+
+
+class MusixMatchAPIError(Exception):
+        """
+        Error raised when the status code returned by the musixMatch API is not 200
+        """
+
+        def __init__(self, code, message=None):
+            self.mxm_code = code
+            if message is None:
+                message = status_code(code)
+            self.args = ('MusixMatch API Error %d: %s' % (code, message),)
