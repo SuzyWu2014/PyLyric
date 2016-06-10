@@ -1,3 +1,16 @@
+class MusixMatchAPIError(Exception):
+        """
+        Error raised when the status code returned by the musixMatch
+        API is not 200
+        """
+
+        def __init__(self, code, message=None):
+            self.mxm_code = code
+            if message is None:
+                message = status_code(code)
+            self.args = ('MusixMatch API Error %d: %s' % (code, message),)
+
+
 def status_code(value):
     """
     Get a value, i.e. error code as a int.
@@ -54,15 +67,3 @@ def check_status(response):
     # all good, return body
     body = msg['body']
     return body
-
-
-class MusixMatchAPIError(Exception):
-        """
-        Error raised when the status code returned by the musixMatch API is not 200
-        """
-
-        def __init__(self, code, message=None):
-            self.mxm_code = code
-            if message is None:
-                message = status_code(code)
-            self.args = ('MusixMatch API Error %d: %s' % (code, message),)

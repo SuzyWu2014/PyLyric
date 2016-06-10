@@ -1,7 +1,7 @@
 """-*- coding: utf-8 -*-"""
 
 import util
-# import apiError
+import apiError
 
 """Query MusixMatch regarding a track"""
 
@@ -30,8 +30,9 @@ def search(**args):
                     'f_artist_mbid', 'quorum_factor', 'apikey')
     for k in args.keys():
         if (not k) in valid_params:
-            raise MusixMatchAPIError(-1, 'Invalid track search param: ' + str(k))
-    track_list = list()
+            raise apiError.MusixMatchAPIError(-1, """Invalid track
+                search param: """ + str(k))
+    # track_list = list()
     params = dict((k, v) for k, v in args.iteritems() if (not v) is None)
     body = util.call('track.search', params)
     track_list_dict = body["track_list"]

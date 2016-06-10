@@ -1,14 +1,14 @@
-import os
-import sys
-import time
-import copy
+# import os
+# import sys
+# import time
+# import copy
 import urllib
 import apiError
 import urllib2  # needed for the TIMEOUT option, otherwise urllib is enough
-try:
-    from Queue import PriorityQueue, Empty
-except ImportError:
-    from queue import PriorityQueue, Empty
+# try:
+#     from Queue import PriorityQueue, Empty
+# except ImportError:
+#     from queue import PriorityQueue, Empty
 try:
     import json
 except ImportError:
@@ -48,7 +48,7 @@ def decode_json(raw_json):
     try:
         response_dict = json.loads(raw_json)
     except ValueError:
-        raise MusixMatchAPIError(-1, "Unknown error")
+        raise apiError.MusixMatchAPIError(-1, "Unknown error")
     return response_dict
 
 
